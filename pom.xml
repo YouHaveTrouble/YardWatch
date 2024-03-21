@@ -13,7 +13,7 @@
 
     <description>Implementation of YardWatchAPI for common protection plugins</description>
     <properties>
-    <java.version>1.8</java.version>
+    <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
     <url>https://youhavetrouble.me</url>
@@ -81,6 +81,12 @@
           <groupId>com.sk89q.worldguard</groupId>
           <artifactId>worldguard-bukkit</artifactId>
           <version>7.0.4-SNAPSHOT</version>
+          <exclusions>
+              <exclusion>
+                  <groupId>org.bstats</groupId>
+                  <artifactId>bstats-bukkit</artifactId>
+              </exclusion>
+          </exclusions>
           <scope>provided</scope>
       </dependency>
       <dependency>

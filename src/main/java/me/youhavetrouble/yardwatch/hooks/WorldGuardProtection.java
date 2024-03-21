@@ -81,8 +81,7 @@ public class WorldGuardProtection implements Protection {
     @Override
     public boolean canDamage(Entity attacker, Entity target) {
         if (!isEnabled()) return true;
-        if (!(attacker instanceof Player)) return true;
-        Player player = (Player) attacker;
+        if (!(attacker instanceof Player player)) return true;
         com.sk89q.worldedit.util.Location wgLocation = BukkitAdapter.adapt(target.getLocation());
         LocalPlayer localPlayer = WorldGuardPlugin.inst().wrapPlayer(player, true);
         RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
