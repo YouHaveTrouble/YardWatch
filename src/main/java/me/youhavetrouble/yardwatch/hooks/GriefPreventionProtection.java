@@ -53,13 +53,13 @@ public class GriefPreventionProtection implements Protection {
     @Override
     public boolean canInteract(Player player, Entity target) {
         Claim claim = GriefPrevention.instance.dataStore.getClaimAt(target.getLocation(), true, null);
-        return claim == null || claim.hasExplicitPermission(player.getUniqueId(), ClaimPermission.Access);
+        return claim == null || claim.hasExplicitPermission(player.getUniqueId(), ClaimPermission.Inventory); // do not ask why it's "inventory"...
     }
 
     @Override
     public boolean canDamage(Entity damager, Entity target) {
         if (!(damager instanceof Player player)) return true;
         Claim claim = GriefPrevention.instance.dataStore.getClaimAt(target.getLocation(), true, null);
-        return claim == null || claim.hasExplicitPermission(player.getUniqueId(), ClaimPermission.Access);
+        return claim == null || claim.hasExplicitPermission(player.getUniqueId(), ClaimPermission.Inventory); // do not ask why it's "inventory"...
     }
 }
