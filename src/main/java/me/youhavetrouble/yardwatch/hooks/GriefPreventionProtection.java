@@ -15,6 +15,7 @@ import java.util.UUID;
 public class GriefPreventionProtection implements Protection {
 
     private final YardWatch plugin;
+    private final UUID dummyId = UUID.fromString("00000000-0000-0000-0000-000000000000");
 
     public GriefPreventionProtection(YardWatch plugin) {
         this.plugin = plugin;
@@ -29,7 +30,7 @@ public class GriefPreventionProtection implements Protection {
     public boolean isProtected(Location location) {
         Claim claim = GriefPrevention.instance.dataStore.getClaimAt(location, true, null);
         if (claim == null) return false;
-        return claim.checkPermission(UUID.fromString("00000000-0000-0000-0000-000000000000"), ClaimPermission.Build, null) != null;
+        return claim.checkPermission(dummyId, ClaimPermission.Build, null) != null;
     }
 
     @Override
