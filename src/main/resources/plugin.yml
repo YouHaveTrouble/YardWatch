@@ -1,4 +1,4 @@
-name: YardWatch
+name: '${project.artifactId}'
 version: '${project.version}'
 main: me.youhavetrouble.yardwatch.YardWatch
 api-version: '1.13'
@@ -8,5 +8,5 @@ softdepend:
   - "Towny"
 authors:
   - "YouHaveTrouble"
-description: "Implementation of YardWatchAPI for common protection plugins"
-website: "https://youhavetrouble.me"
+description: '${project.description}'
+website: '${project.url}'
