@@ -1,5 +1,6 @@
 package me.youhavetrouble.yardwatch;
 
+import me.youhavetrouble.yardwatch.hooks.FactionsUUIDProtection;
 import me.youhavetrouble.yardwatch.hooks.GriefPreventionProtection;
 import me.youhavetrouble.yardwatch.hooks.LWCXProtection;
 import me.youhavetrouble.yardwatch.hooks.WorldGuardProtection;
@@ -30,6 +31,12 @@ public final class YardWatch extends JavaPlugin {
         if (shouldRegisterService("LWC")) {
             getServer().getServicesManager().register(
                     Protection.class, new LWCXProtection(this), this, ServicePriority.Normal
+            );
+        }
+
+        if (shouldRegisterService("Factions")) {
+            getServer().getServicesManager().register(
+                    Protection.class, new FactionsUUIDProtection(this), this, ServicePriority.Normal
             );
         }
 

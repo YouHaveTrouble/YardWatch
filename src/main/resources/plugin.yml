@@ -3,11 +3,12 @@ version: '${project.version}'
 main: me.youhavetrouble.yardwatch.YardWatch
 api-version: '1.16'
 folia-supported: true
-softdepend:
-  - "WorldGuard"
-  - "GriefPrevention"
-  - "Towny"
 authors:
   - "YouHaveTrouble"
 description: '${project.description}'
 website: '${project.url}'
+softdepend:
+  - "WorldGuard"
+  - "GriefPrevention"
+  - "Towny"
+  - "Factions"

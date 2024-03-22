@@ -15,6 +15,7 @@ If you're a developer looking for information how to implement YardWatchAPI in y
 - GriefPrevention (v16+)
 - WorldGuard (7.0.0+)
 - LWCX
+- FactionsUUID
 
 ## Plugin you're using is not implementing YardWatchAPI?
 Contact the plugin developer and send them [here](https://github.com/YouHaveTrouble/YardWatchAPI/blob/master/readme.md)!

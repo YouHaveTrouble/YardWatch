@@ -9,6 +9,7 @@ body:
       label: "Plugin name"
       multiple: false
       options:
+        - "FactionsUUID"
         - "GriefPrevention"
         - "WorldGuard"
         - "LWCX"
