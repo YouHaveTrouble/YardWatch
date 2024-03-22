@@ -1,0 +1,28 @@
+name: "Implementation request"
+description: "Suggest a plugin that needs implementation for YardWatchAPI"
+title: "[NEW IMPLEMENTATION]: "
+labels: ["enhancement"]
+body:
+  - type: "input"
+    id: "plugin_name"
+    attributes:
+      label: "Plugin name"
+      placeholder: "Name of the plugin you want to implement YardWatchAPI"
+    validations:
+      required: true
+  - type: "input"
+    id: "plugin_api_url"
+    attributes:
+      label: "Link to plugin's developer API"
+      description: ""
+      placeholder: "Link to plugin's developer API"
+    validations:
+      required: false
+  - type: "checkboxes"
+    id: "dev_contacted"
+    attributes:
+      label: "Contact the developer(s) of the plugin you're requesting here first."
+      options:
+        - label: "I informed the developer that they can implement YardWatchAPI directly in their plugin per
+                 instructions at [YardWatchAPI readme page](https://github.com/YouHaveTrouble/YardWatchAPI/blob/master/readme.md)"
+          required: true
