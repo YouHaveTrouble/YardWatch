@@ -6,3 +6,7 @@ plugin to take over.
 
 If you're a developer looking for information how to implement YardWatchAPI in your plugin, see
 [YardWatchAPI](https://github.com/YouHaveTrouble/YardWatchAPI)
+
+## Requirements
+- Java 17
+- Minecraft 1.16+
