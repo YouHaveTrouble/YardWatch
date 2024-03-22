@@ -1,0 +1,31 @@
+name: "Bug report"
+description: "Report an issue with existing plugin implementation"
+title: "[BUG]: "
+labels: ["bug"]
+body:
+  - type: "dropdown"
+    id: "implementation"
+    attributes:
+      label: "Plugin name"
+      multiple: false
+      options:
+        - "GriefPrevention"
+        - "WorldGuard"
+        - "LWCX"
+    validations:
+      required: true
+  - type: "textarea"
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what's wrong
+    validations:
+      required: true
+  - type: "checkboxes"
+    id: "sanity_checks"
+    attributes:
+      label: "Sanity checks"
+      options:
+        - label: "I made sure there isn't an open issue about this already"
+          required: true
