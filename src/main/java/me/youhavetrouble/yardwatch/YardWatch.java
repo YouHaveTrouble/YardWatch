@@ -1,6 +1,7 @@
 package me.youhavetrouble.yardwatch;
 
 import me.youhavetrouble.yardwatch.hooks.GriefPreventionProtection;
+import me.youhavetrouble.yardwatch.hooks.LWCXProtection;
 import me.youhavetrouble.yardwatch.hooks.WorldGuardProtection;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -23,6 +24,12 @@ public final class YardWatch extends JavaPlugin {
         if (shouldRegisterService("GriefPrevention")) {
             getServer().getServicesManager().register(
                     Protection.class, new GriefPreventionProtection(this), this, ServicePriority.Normal
+            );
+        }
+
+        if (shouldRegisterService("LWC")) {
+            getServer().getServicesManager().register(
+                    Protection.class, new LWCXProtection(this), this, ServicePriority.Normal
             );
         }
 
