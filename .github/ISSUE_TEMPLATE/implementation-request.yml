@@ -14,7 +14,6 @@ body:
     id: "plugin_api_url"
     attributes:
       label: "Link to plugin's developer API"
-      description: ""
       placeholder: "Link to plugin's developer API"
     validations:
       required: false
