@@ -10,3 +10,8 @@ If you're a developer looking for information how to implement YardWatchAPI in y
 ## Requirements
 - Java 17
 - Minecraft 1.16+
+
+## Implementations for:
+- GriefPrevention (v16+)
+- WorldGuard (7.0.0+)
+- LWCX
