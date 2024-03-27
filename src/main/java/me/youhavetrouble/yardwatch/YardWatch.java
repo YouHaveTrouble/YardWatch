@@ -3,6 +3,7 @@ package me.youhavetrouble.yardwatch;
 import me.youhavetrouble.yardwatch.hooks.FactionsUUIDProtection;
 import me.youhavetrouble.yardwatch.hooks.GriefPreventionProtection;
 import me.youhavetrouble.yardwatch.hooks.LWCXProtection;
+import me.youhavetrouble.yardwatch.hooks.SuperiorSkyBlockProtection;
 import me.youhavetrouble.yardwatch.hooks.WorldGuardProtection;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -40,6 +41,11 @@ public final class YardWatch extends JavaPlugin {
             );
         }
 
+        if (shouldRegisterService("SuperiorSkyblock2")) {
+            getServer().getServicesManager().register(
+                    Protection.class, new SuperiorSkyBlockProtection(this), this, ServicePriority.Normal
+            );
+        }
     }
 
     /**
