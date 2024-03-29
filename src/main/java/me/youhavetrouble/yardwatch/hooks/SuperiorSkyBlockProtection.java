@@ -7,6 +7,7 @@ import com.bgsoftware.superiorskyblock.api.island.IslandPrivilege;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import me.youhavetrouble.yardwatch.Protection;
 import me.youhavetrouble.yardwatch.YardWatch;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -31,13 +32,9 @@ public class SuperiorSkyBlockProtection implements Protection {
     public boolean isProtected(Location location) {
         if (!isEnabled()) return false;
 
-        Island island = SuperiorSkyblockAPI.getIslandAt(location) == null ? SuperiorSkyblockAPI.getSpawnIsland() : SuperiorSkyblockAPI.getIslandAt(location);
+        Island island = SuperiorSkyblockAPI.getIslandAt(location);
 
-        if (island == null) return false;
-
-        Block block = location.getBlock();
-
-        return island.handleBlockPlaceWithResult(block) == BlockChangeResult.SUCCESS || island.handleBlockBreakWithResult(block) == BlockChangeResult.SUCCESS;
+        return island != null;
     }
 
     @Override
@@ -46,18 +43,18 @@ public class SuperiorSkyBlockProtection implements Protection {
 
         Location location = blockState.getLocation();
 
-        Island island = SuperiorSkyblockAPI.getIslandAt(location) == null ? SuperiorSkyblockAPI.getSpawnIsland() : SuperiorSkyblockAPI.getIslandAt(location);
+        Island island = SuperiorSkyblockAPI.getIslandAt(location);
 
-        return island == null || island.handleBlockBreakWithResult(blockState.getBlock()) == BlockChangeResult.SUCCESS;
+        return island == null || island.hasPermission(player, IslandPrivilege.getByName("BREAK"));
     }
 
     @Override
     public boolean canPlaceBlock(Player player, Location location) {
         if (!isEnabled()) return true;
 
-        Island island = SuperiorSkyblockAPI.getIslandAt(location) == null ? SuperiorSkyblockAPI.getSpawnIsland() : SuperiorSkyblockAPI.getIslandAt(location);
+        Island island = SuperiorSkyblockAPI.getIslandAt(location);
 
-        return island == null || island.handleBlockPlaceWithResult(location.getBlock()) == BlockChangeResult.SUCCESS;
+        return island == null || island.hasPermission(player, IslandPrivilege.getByName("INTERACT"));
     }
 
     @Override
@@ -66,7 +63,7 @@ public class SuperiorSkyBlockProtection implements Protection {
 
         Location location = blockState.getLocation();
 
-        Island island = SuperiorSkyblockAPI.getIslandAt(location) == null ? SuperiorSkyblockAPI.getSpawnIsland() : SuperiorSkyblockAPI.getIslandAt(location);
+        Island island = SuperiorSkyblockAPI.getIslandAt(location);
 
         return island == null || island.hasPermission(player, IslandPrivilege.getByName("INTERACT"));
     }
@@ -77,7 +74,7 @@ public class SuperiorSkyBlockProtection implements Protection {
 
         Location location = target.getLocation();
 
-        Island island = SuperiorSkyblockAPI.getIslandAt(location) == null ? SuperiorSkyblockAPI.getSpawnIsland() : SuperiorSkyblockAPI.getIslandAt(location);
+        Island island = SuperiorSkyblockAPI.getIslandAt(location);
 
         return island == null || island.hasPermission(player, IslandPrivilege.getByName("INTERACT")) || island.hasPermission(player, IslandPrivilege.getByName("USE"));
     }
@@ -89,7 +86,7 @@ public class SuperiorSkyBlockProtection implements Protection {
 
         Location location = target.getLocation();
 
-        Island island = SuperiorSkyblockAPI.getIslandAt(location) == null ? SuperiorSkyblockAPI.getSpawnIsland() : SuperiorSkyblockAPI.getIslandAt(location);
+        Island island = SuperiorSkyblockAPI.getIslandAt(location);
 
         return island == null || island.hasPermission(attacker, IslandPrivilege.getByName("INTERACT"));
     }
