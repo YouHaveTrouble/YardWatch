@@ -12,10 +12,12 @@ If you're a developer looking for information how to implement YardWatchAPI in y
 - Minecraft 1.16+
 
 ## Implementations for:
-- GriefPrevention (v16+)
-- WorldGuard (7.0.0+)
+- [GriefPrevention (v16+)](https://www.spigotmc.org/resources/griefprevention.1884/)
+- [WorldGuard (7.0.0+)](https://enginehub.org/worldguard#downloads)
 - LWCX
-- FactionsUUID
+- [FactionsUUID](https://www.spigotmc.org/resources/factionsuuid.1035/)
+- [SuperiorSkyBlock](https://bg-software.com/superiorskyblock/)
+- [Towny](https://github.com/TownyAdvanced/Towny)
 
 ## Plugin you're using is not implementing YardWatchAPI?
 Contact the plugin developer and send them [here](https://github.com/YouHaveTrouble/YardWatchAPI/blob/master/readme.md)!
