@@ -16,7 +16,6 @@ public final class YardWatch extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
         if (shouldRegisterService("WorldGuard")) {
             getServer().getServicesManager().register(
                     Protection.class, new WorldGuardProtection(this), this, ServicePriority.Normal
@@ -46,6 +45,13 @@ public final class YardWatch extends JavaPlugin {
                     Protection.class, new SuperiorSkyBlockProtection(this), this, ServicePriority.Normal
             );
         }
+
+        if (shouldRegisterService("Towny")) {
+            getServer().getServicesManager().register(
+                    Protection.class, new TownyProtection(this), this, ServicePriority.Normal
+            );
+        }
+
     }
 
     /**
