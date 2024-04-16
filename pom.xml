@@ -53,6 +53,10 @@
 
     <repositories>
         <repository>
+            <id>bg-software</id>
+            <url>https://repo.bg-software.com/repository/api/</url>
+        </repository>
+        <repository>
             <id>papermc-repo</id>
             <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
@@ -75,6 +79,10 @@
         <repository>
             <id>ender-zone</id>
             <url>https://ci.ender.zone/plugin/repository/everything/</url>
+        </repository>
+        <repository>
+            <id>glaremasters repo</id>
+            <url>https://repo.glaremasters.me/repository/towny/</url>
         </repository>
     </repositories>
 
@@ -110,6 +118,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>com.bgsoftware</groupId>
+            <artifactId>SuperiorSkyblockAPI</artifactId>
+            <version>2023.3</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>com.griefcraft</groupId>
             <artifactId>lwc</artifactId>
             <version>2.2.9-dev</version>
@@ -119,6 +133,12 @@
             <groupId>com.massivecraft</groupId>
             <artifactId>Factions</artifactId>
             <version>1.6.9.5-U0.6.33</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.palmergames.bukkit.towny</groupId>
+            <artifactId>towny</artifactId>
+            <version>0.100.1.0</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

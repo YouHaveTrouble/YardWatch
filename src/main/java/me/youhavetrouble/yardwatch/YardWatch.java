@@ -3,6 +3,8 @@ package me.youhavetrouble.yardwatch;
 import me.youhavetrouble.yardwatch.hooks.FactionsUUIDProtection;
 import me.youhavetrouble.yardwatch.hooks.GriefPreventionProtection;
 import me.youhavetrouble.yardwatch.hooks.LWCXProtection;
+import me.youhavetrouble.yardwatch.hooks.SuperiorSkyBlockProtection;
+import me.youhavetrouble.yardwatch.hooks.TownyProtection;
 import me.youhavetrouble.yardwatch.hooks.WorldGuardProtection;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -15,7 +17,6 @@ public final class YardWatch extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
         if (shouldRegisterService("WorldGuard")) {
             getServer().getServicesManager().register(
                     Protection.class, new WorldGuardProtection(this), this, ServicePriority.Normal
@@ -37,6 +38,18 @@ public final class YardWatch extends JavaPlugin {
         if (shouldRegisterService("Factions")) {
             getServer().getServicesManager().register(
                     Protection.class, new FactionsUUIDProtection(this), this, ServicePriority.Normal
+            );
+        }
+
+        if (shouldRegisterService("SuperiorSkyblock2")) {
+            getServer().getServicesManager().register(
+                    Protection.class, new SuperiorSkyBlockProtection(this), this, ServicePriority.Normal
+            );
+        }
+
+        if (shouldRegisterService("Towny")) {
+            getServer().getServicesManager().register(
+                    Protection.class, new TownyProtection(this), this, ServicePriority.Normal
             );
         }
 
