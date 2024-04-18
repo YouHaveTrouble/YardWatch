@@ -61,7 +61,7 @@ public final class YardWatch extends JavaPlugin {
 
         List<RegisteredServiceProvider<?>> registrations = getServer().getServicesManager().getRegistrations(this);
         if (registrations.isEmpty()) {
-            getLogger().info("Registered 0 services.");
+            getLogger().info("Registered 0 services. This plugin can be safely removed.");
         } else {
             getLogger().info("Successfully registered " + registrations.size() + " services.");
         }
