@@ -14,3 +14,10 @@ softdepend:
   - "Factions"
   - "SuperiorSkyblock2"
   - "LWC"
+commands:
+    yardwatch:
+        description: "YardWatch command"
+        usage: "/yardwatch <arg>"
+        permission: "yardwatch.command"
+        aliases:
+        - "yw"

@@ -1,11 +1,13 @@
 package me.youhavetrouble.yardwatch;
 
+import me.youhavetrouble.yardwatch.commands.YardWatchCommand;
 import me.youhavetrouble.yardwatch.hooks.FactionsUUIDProtection;
 import me.youhavetrouble.yardwatch.hooks.GriefPreventionProtection;
 import me.youhavetrouble.yardwatch.hooks.LWCXProtection;
 import me.youhavetrouble.yardwatch.hooks.SuperiorSkyBlockProtection;
 import me.youhavetrouble.yardwatch.hooks.TownyProtection;
 import me.youhavetrouble.yardwatch.hooks.WorldGuardProtection;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.ServicePriority;
@@ -17,6 +19,12 @@ public final class YardWatch extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        PluginCommand command = getCommand("yardwatch");
+        if (command != null) {
+            command.setExecutor(new YardWatchCommand(this));
+        }
+
         if (shouldRegisterService("WorldGuard")) {
             getServer().getServicesManager().register(
                     Protection.class, new WorldGuardProtection(this), this, ServicePriority.Normal
