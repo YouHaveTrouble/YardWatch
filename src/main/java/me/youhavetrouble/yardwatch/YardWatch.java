@@ -26,41 +26,53 @@ public final class YardWatch extends JavaPlugin {
         }
 
         if (shouldRegisterService("WorldGuard")) {
+            getLogger().info("Registering WorldGuard service.");
             getServer().getServicesManager().register(
                     Protection.class, new WorldGuardProtection(this), this, ServicePriority.Normal
             );
         }
 
         if (shouldRegisterService("GriefPrevention")) {
+            getLogger().info("Registering GriefPrevention service.");
             getServer().getServicesManager().register(
                     Protection.class, new GriefPreventionProtection(this), this, ServicePriority.Normal
             );
         }
 
         if (shouldRegisterService("LWC")) {
+            getLogger().info("Registering LWC service.");
             getServer().getServicesManager().register(
                     Protection.class, new LWCXProtection(this), this, ServicePriority.Normal
             );
         }
 
         if (shouldRegisterService("Factions")) {
+            getLogger().info("Registering Factions service.");
             getServer().getServicesManager().register(
                     Protection.class, new FactionsUUIDProtection(this), this, ServicePriority.Normal
             );
         }
 
         if (shouldRegisterService("SuperiorSkyblock2")) {
+            getLogger().info("Registering SuperiorSkyblock2 service.");
             getServer().getServicesManager().register(
                     Protection.class, new SuperiorSkyBlockProtection(this), this, ServicePriority.Normal
             );
         }
 
         if (shouldRegisterService("Towny")) {
+            getLogger().info("Registering Towny service.");
             getServer().getServicesManager().register(
                     Protection.class, new TownyProtection(this), this, ServicePriority.Normal
             );
         }
 
+        List<RegisteredServiceProvider<?>> registrations = getServer().getServicesManager().getRegistrations(this);
+        if (registrations.isEmpty()) {
+            getLogger().info("Registered 0 services. This plugin can be safely removed.");
+        } else {
+            getLogger().info("Successfully registered " + registrations.size() + " services.");
+        }
     }
 
     /**

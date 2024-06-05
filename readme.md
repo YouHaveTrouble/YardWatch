@@ -14,7 +14,7 @@ If you're a developer looking for information how to implement YardWatchAPI in y
 ## Implementations for:
 - [GriefPrevention (v16+)](https://www.spigotmc.org/resources/griefprevention.1884/)
 - [WorldGuard (7.0.0+)](https://enginehub.org/worldguard#downloads)
-- LWCX
+- [LWCX](https://www.spigotmc.org/resources/lwc-extended.69551/)
 - [FactionsUUID](https://www.spigotmc.org/resources/factionsuuid.1035/)
 - [SuperiorSkyBlock](https://bg-software.com/superiorskyblock/)
 - [Towny](https://github.com/TownyAdvanced/Towny)
