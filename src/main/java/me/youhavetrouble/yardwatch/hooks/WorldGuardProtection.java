@@ -4,6 +4,8 @@ import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldguard.LocalPlayer;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import com.sk89q.worldguard.domains.Association;
+import com.sk89q.worldguard.protection.association.Associables;
 import com.sk89q.worldguard.protection.flags.Flags;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 import com.sk89q.worldguard.protection.regions.RegionQuery;
@@ -34,7 +36,7 @@ public class WorldGuardProtection implements Protection {
         com.sk89q.worldedit.util.Location wgLocation = BukkitAdapter.adapt(location);
         RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
         RegionQuery query = container.createQuery();
-        return query.testBuild(wgLocation, null);
+        return query.testBuild(wgLocation, Associables.constant(Association.NON_MEMBER));
     }
 
     @Override

@@ -2,11 +2,19 @@ package me.youhavetrouble.yardwatch.commands;
 
 import me.youhavetrouble.yardwatch.Protection;
 import me.youhavetrouble.yardwatch.YardWatch;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.HoverEvent;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextColor;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.util.StringUtil;
+import org.checkerframework.checker.units.qual.C;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -34,6 +42,9 @@ public class YardWatchCommand implements TabExecutor {
         if (args[0].equalsIgnoreCase("hooks")) {
             sendHooks(sender);
             return true;
+        } else if (args[0].equalsIgnoreCase("query")) {
+            queryProtection(sender);
+            return true;
         }
 
         return false;
@@ -45,6 +56,7 @@ public class YardWatchCommand implements TabExecutor {
 
         if (args.length == 1) {
             completions.add("hooks");
+            completions.add("query");
             return StringUtil.copyPartialMatches(args[0], completions, new ArrayList<>());
         }
 
@@ -71,5 +83,29 @@ public class YardWatchCommand implements TabExecutor {
             sender.sendMessage(String.format("%s -> %s %s registered", entry.getKey(), entry.getValue(), hook));
         }
 
+    }
+
+    private void queryProtection(CommandSender sender) {
+        if (sender instanceof Player player) {
+            Location location = player.getLocation();
+            sender.sendMessage("Protections at " + location.getBlockX() + ", " + location.getBlockY() + ", " + location.getBlockZ());
+            Collection<RegisteredServiceProvider<Protection>> protections = plugin.getServer().getServicesManager().getRegistrations(Protection.class);
+            for (RegisteredServiceProvider<Protection> protection : protections) {
+                Component component = Component.text(protection.getPlugin().getName()).append(Component.text(" isProtected " + protection.getProvider().isProtected(location)))
+                        .hoverEvent(HoverEvent.showText(
+                                Component.text(protection.getProvider().toString())
+                                .append(Component.newline())
+                                .append(Component.text("canPlaceBlock " + protection.getProvider().canPlaceBlock(player, location))
+                                .append(Component.newline())
+                                .append(Component.text("canBreakBlock " + protection.getProvider().canBreakBlock(player, location.getBlock().getState())))
+                                .append(Component.newline())
+                                .append(Component.text("canInteract " + protection.getProvider().canInteract(player, location.getBlock().getState())))
+                        )));
+                ;
+                sender.sendMessage(component);
+            }
+            return;
+        }
+        sender.sendMessage(("You must be a player to use this command!"));
     }
 }
