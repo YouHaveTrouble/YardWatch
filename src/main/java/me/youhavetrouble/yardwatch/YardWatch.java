@@ -1,5 +1,6 @@
 package me.youhavetrouble.yardwatch;
 
+import com.google.common.io.Resources;
 import me.youhavetrouble.yardwatch.commands.YardWatchCommand;
 import me.youhavetrouble.yardwatch.hooks.FactionsUUIDProtection;
 import me.youhavetrouble.yardwatch.hooks.GriefPreventionProtection;
@@ -13,12 +14,24 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
+@SuppressWarnings("UnstableApiUsage")
 public final class YardWatch extends JavaPlugin {
+
+    private static String yardWatchApiVersion = "Unknown";
 
     @Override
     public void onEnable() {
+
+        try {
+            URL url = Resources.getResource("apiversion.txt");
+            yardWatchApiVersion = Resources.toString(url, com.google.common.base.Charsets.UTF_8);
+        } catch (IOException e) {
+            getLogger().warning("Failed to read YardWatch API version.");
+        }
 
         PluginCommand command = getCommand("yardwatch");
         if (command != null) {
@@ -95,5 +108,9 @@ public final class YardWatch extends JavaPlugin {
     @Override
     public void onDisable() {
         getServer().getServicesManager().unregisterAll(this);
+    }
+
+    public static String getYardWatchApiVersion() {
+        return yardWatchApiVersion;
     }
 }

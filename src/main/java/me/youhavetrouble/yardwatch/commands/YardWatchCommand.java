@@ -60,7 +60,7 @@ public class YardWatchCommand implements TabExecutor {
     }
 
     private void sendDefault(CommandSender sender) {
-        sender.sendMessage("YardWatch " + version);
+        sender.sendMessage(String.format("YardWatch %s (Implementing YardWatch API %s)", version, YardWatch.getYardWatchApiVersion()));
     }
 
     private void sendHooks(CommandSender sender) {
