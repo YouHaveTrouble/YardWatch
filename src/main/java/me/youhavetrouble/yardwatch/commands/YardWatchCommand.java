@@ -4,17 +4,13 @@ import me.youhavetrouble.yardwatch.Protection;
 import me.youhavetrouble.yardwatch.YardWatch;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.HoverEvent;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.util.StringUtil;
-import org.checkerframework.checker.units.qual.C;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -101,7 +97,6 @@ public class YardWatchCommand implements TabExecutor {
                                 .append(Component.newline())
                                 .append(Component.text("canInteract " + protection.getProvider().canInteract(player, location.getBlock().getState())))
                         )));
-                ;
                 sender.sendMessage(component);
             }
             return;
