@@ -82,25 +82,29 @@ public class YardWatchCommand implements TabExecutor {
     }
 
     private void queryProtection(CommandSender sender) {
-        if (sender instanceof Player player) {
-            Location location = player.getLocation();
-            sender.sendMessage("Protections at " + location.getBlockX() + ", " + location.getBlockY() + ", " + location.getBlockZ());
-            Collection<RegisteredServiceProvider<Protection>> protections = plugin.getServer().getServicesManager().getRegistrations(Protection.class);
-            for (RegisteredServiceProvider<Protection> protection : protections) {
-                Component component = Component.text(protection.getPlugin().getName()).append(Component.text(" isProtected " + protection.getProvider().isProtected(location)))
-                        .hoverEvent(HoverEvent.showText(
-                                Component.text(protection.getProvider().toString())
-                                .append(Component.newline())
-                                .append(Component.text("canPlaceBlock " + protection.getProvider().canPlaceBlock(player, location))
-                                .append(Component.newline())
-                                .append(Component.text("canBreakBlock " + protection.getProvider().canBreakBlock(player, location.getBlock().getState())))
-                                .append(Component.newline())
-                                .append(Component.text("canInteract " + protection.getProvider().canInteract(player, location.getBlock().getState())))
-                        )));
-                sender.sendMessage(component);
-            }
+        if (!(sender instanceof Player player)) {
+            sender.sendMessage(("You must be a player to use this command!"));
             return;
         }
-        sender.sendMessage(("You must be a player to use this command!"));
+        Location location = player.getLocation();
+        sender.sendMessage("Protections at " + location.getBlockX() + ", " + location.getBlockY() + ", " + location.getBlockZ());
+        Collection<RegisteredServiceProvider<Protection>> protections = plugin.getServer().getServicesManager().getRegistrations(Protection.class);
+        if (protections.isEmpty()) {
+            sender.sendMessage("No protections registered at " + location.getBlockX() + ", " + location.getBlockY() + ", " + location.getBlockZ());
+            return;
+        }
+        for (RegisteredServiceProvider<Protection> protection : protections) {
+            Component component = Component.text(protection.getPlugin().getName()).append(Component.text(" isProtected " + protection.getProvider().isProtected(location)))
+                    .hoverEvent(HoverEvent.showText(
+                            Component.text(protection.getProvider().toString())
+                                    .append(Component.newline())
+                                    .append(Component.text("canPlaceBlock " + protection.getProvider().canPlaceBlock(player, location))
+                                            .append(Component.newline())
+                                            .append(Component.text("canBreakBlock " + protection.getProvider().canBreakBlock(player, location.getBlock().getState())))
+                                            .append(Component.newline())
+                                            .append(Component.text("canInteract " + protection.getProvider().canInteract(player, location.getBlock().getState())))
+                                    )));
+            sender.sendMessage(component);
+        }
     }
 }
