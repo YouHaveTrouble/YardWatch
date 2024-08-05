@@ -13,7 +13,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -27,8 +26,11 @@ public final class YardWatch extends JavaPlugin {
     public void onEnable() {
 
         try {
-            URL url = Resources.getResource("apiversion.txt");
-            yardWatchApiVersion = Resources.toString(url, com.google.common.base.Charsets.UTF_8);
+            final URL url = getClassLoader().getResource("apiversion.txt");
+
+            if (url != null) {
+                yardWatchApiVersion = Resources.toString(url, com.google.common.base.Charsets.UTF_8);
+            }
         } catch (IOException e) {
             getLogger().warning("Failed to read YardWatch API version.");
         }
