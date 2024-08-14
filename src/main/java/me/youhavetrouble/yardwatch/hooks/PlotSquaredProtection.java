@@ -46,7 +46,7 @@ public class PlotSquaredProtection implements Protection {
         if (plot == null) return isProtected(blockLocation);
 
         // Check if the player is added to the plot including members or trusted or if they are owner
-        return plot.isAdded(player.getUniqueId());
+        return isProtected(blockLocation) || plot.isAdded(player.getUniqueId());
     }
 
     @Override
