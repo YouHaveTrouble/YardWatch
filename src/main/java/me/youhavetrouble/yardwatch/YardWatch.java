@@ -5,6 +5,7 @@ import me.youhavetrouble.yardwatch.commands.YardWatchCommand;
 import me.youhavetrouble.yardwatch.hooks.FactionsUUIDProtection;
 import me.youhavetrouble.yardwatch.hooks.GriefPreventionProtection;
 import me.youhavetrouble.yardwatch.hooks.LWCXProtection;
+import me.youhavetrouble.yardwatch.hooks.PlotSquaredProtection;
 import me.youhavetrouble.yardwatch.hooks.SuperiorSkyBlockProtection;
 import me.youhavetrouble.yardwatch.hooks.TownyProtection;
 import me.youhavetrouble.yardwatch.hooks.WorldGuardProtection;
@@ -80,6 +81,13 @@ public final class YardWatch extends JavaPlugin {
             getLogger().info("Registering Towny service.");
             getServer().getServicesManager().register(
                     Protection.class, new TownyProtection(this), this, ServicePriority.Normal
+            );
+        }
+
+        if (shouldRegisterService("PlotSquared")) {
+            getLogger().info("Registering PlotSquared service.");
+            getServer().getServicesManager().register(
+                    Protection.class, new PlotSquaredProtection(this), this, ServicePriority.Normal
             );
         }
 
