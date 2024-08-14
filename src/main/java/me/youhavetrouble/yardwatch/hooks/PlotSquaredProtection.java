@@ -41,17 +41,13 @@ public class PlotSquaredProtection implements Protection {
 
         final Plot plot = location.getOwnedPlot();
 
-        // if plot null, revert to isProtected check, we might have getOwnedPlot() != null in the method, but obviously
-        // isProtected will be used in other places.
         if (plot == null) return isProtected(blockLocation);
 
-        // Check if the player is added to the plot including members or trusted or if they are owner
         return plot.isAdded(player.getUniqueId());
     }
 
     @Override
     public boolean canPlaceBlock(final Player player, final Location location) {
-        // the code to handle canBreakBlock is simply checking if added to plot anyway.
         return canBreakBlock(player, location.getBlock().getState());
     }
 
@@ -72,7 +68,6 @@ public class PlotSquaredProtection implements Protection {
 
     @Override
     public boolean canInteract(final Player player, final Entity target) {
-        // use the above method instead, code the same.
         return canInteract(player, target.getLocation().getBlock().getState());
     }
 
@@ -88,7 +83,6 @@ public class PlotSquaredProtection implements Protection {
 
         if (plot == null) return isProtected(location);
 
-        // if location is protected, consider it a safezone.
         return plot.getFlag(PvpFlag.class);
     }
 
