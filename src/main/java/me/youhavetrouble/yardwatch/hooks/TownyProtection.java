@@ -3,7 +3,6 @@ package me.youhavetrouble.yardwatch.hooks;
 import com.palmergames.bukkit.towny.TownyAPI;
 import com.palmergames.bukkit.towny.object.Resident;
 import com.palmergames.bukkit.towny.object.TownBlock;
-import com.palmergames.bukkit.towny.object.TownyPermission;
 import com.palmergames.bukkit.towny.utils.CombatUtil;
 import me.youhavetrouble.yardwatch.Protection;
 import me.youhavetrouble.yardwatch.YardWatch;
@@ -45,7 +44,7 @@ public class TownyProtection implements Protection {
 
     @Override
     public boolean canPlaceBlock(Player player, Location location) {
-        return canInteract(player, location.getBlock().getState(true));
+        return canInteract(player, location.getBlock().getState());
     }
 
     @Override
@@ -63,7 +62,7 @@ public class TownyProtection implements Protection {
 
     @Override
     public boolean canInteract(Player player, Entity target) {
-        return canInteract(player, target.getLocation().getBlock().getState(true));
+        return canInteract(player, target.getLocation().getBlock().getState());
     }
 
     @Override
