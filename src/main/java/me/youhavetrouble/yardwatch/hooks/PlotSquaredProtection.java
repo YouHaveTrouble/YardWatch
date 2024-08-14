@@ -46,7 +46,7 @@ public class PlotSquaredProtection implements Protection {
         if (plot == null) return isProtected(blockLocation);
 
         // Check if the player is added to the plot including members or trusted or if they are owner
-        return isProtected(blockLocation) || plot.isAdded(player.getUniqueId());
+        return plot.isAdded(player.getUniqueId());
     }
 
     @Override
@@ -65,8 +65,9 @@ public class PlotSquaredProtection implements Protection {
 
         final Plot plot = plotLocation.getOwnedPlot();
 
-        // if location is protected, consider it a place you can't interact with
-        return isProtected(location) || plot != null && plot.isAdded(player.getUniqueId());
+        if (plot == null) return isProtected(location);
+
+        return plot.isAdded(player.getUniqueId());
     }
 
     @Override
@@ -85,8 +86,10 @@ public class PlotSquaredProtection implements Protection {
 
         final Plot plot = plotLocation.getOwnedPlot();
 
+        if (plot == null) return isProtected(location);
+
         // if location is protected, consider it a safezone.
-        return isProtected(location) || plot != null && plot.getFlag(PvpFlag.class);
+        return plot.getFlag(PvpFlag.class);
     }
 
     private com.plotsquared.core.location.@NonNull Location getLocation(final Location location) {
