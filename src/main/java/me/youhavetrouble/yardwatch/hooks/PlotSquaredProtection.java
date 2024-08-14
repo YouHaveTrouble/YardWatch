@@ -29,7 +29,7 @@ public class PlotSquaredProtection implements Protection {
 
         final com.plotsquared.core.location.Location arg1 = getLocation(location);
 
-        return arg1.isPlotArea() || arg1.isPlotRoad() || arg1.isUnownedPlotArea();
+        return arg1.isPlotArea() || arg1.isPlotRoad() || arg1.isUnownedPlotArea() || arg1.getOwnedPlot() != null;
     }
 
     @Override
