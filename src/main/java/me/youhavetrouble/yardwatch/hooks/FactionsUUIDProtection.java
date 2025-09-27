@@ -35,12 +35,13 @@ public class FactionsUUIDProtection implements Protection {
         if (!FactionsPlugin.getInstance().worldUtil().isEnabled(location.getWorld())) return false;
         FLocation fLocation = new FLocation(location);
         Faction faction = Board.getInstance().getFactionAt(fLocation);
-        return faction != null;
+        return !faction.isWilderness();
     }
 
     @Override
     public boolean canBreakBlock(Player player, BlockState blockState) {
         if (!isEnabled()) return true;
+        if (!FactionsPlugin.getInstance().worldUtil().isEnabled(blockState.getWorld())) return true;
         return FactionsBlockListener.playerCanBuildDestroyBlock(
                 player,
                 blockState.getLocation(),
@@ -52,6 +53,7 @@ public class FactionsUUIDProtection implements Protection {
     @Override
     public boolean canPlaceBlock(Player player, Location location) {
         if (!isEnabled()) return true;
+        if (!FactionsPlugin.getInstance().worldUtil().isEnabled(location.getWorld())) return true;
         return FactionsBlockListener.playerCanBuildDestroyBlock(
                 player,
                 location,
@@ -63,18 +65,26 @@ public class FactionsUUIDProtection implements Protection {
     @Override
     public boolean canInteract(Player player, BlockState blockState) {
         if (!isEnabled()) return true;
-        return FactionsPlayerListener.canInteractHere(player, blockState.getLocation());
+        if (!FactionsPlugin.getInstance().worldUtil().isEnabled(blockState.getWorld())) return true;
+        return FactionsPlayerListener.canUseBlock(
+                player,
+                blockState.getType(),
+                blockState.getLocation(),
+                true
+        );
     }
 
     @Override
     public boolean canInteract(Player player, Entity target) {
         if (!isEnabled()) return true;
+        if (!FactionsPlugin.getInstance().worldUtil().isEnabled(target)) return true;
         return FactionsEntityListener.canInteractHere(player, target.getLocation());
     }
 
     @Override
     public boolean canDamage(Entity damager, Entity target) {
         if (!isEnabled()) return true;
+        if (!FactionsPlugin.getInstance().worldUtil().isEnabled(target)) return true;
         return FactionsEntityListener.canDamage(damager, target, false);
     }
 }
